@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraksha App - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <img id="featureBg" class="feature-bg" src="Assets/intro_default.jpg" alt="Background" />
+    <div class="feature-overlay"></div>
+
+<header class="app-header">
+    <img src="Assets/Suraksha Logo.png" alt="Suraksha Logo" class="app-logo">
+</header>
+
+<nav class="feature-nav">
+    <button class="button" id="settingsBtn" title="Settings">
+      <span class="svg-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z" stroke="#090226" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19.4 15A1.65 1.65 0 0 0 20 13.6C20.217 12.933 20.217 12.067 20 11.4A1.65 1.65 0 0 0 19.4 9M4.6 9A1.65 1.65 0 0 0 4 10.4C3.783 11.067 3.783 11.933 4 12.6A1.65 1.65 0 0 0 4.6 15M9 19.4A1.65 1.65 0 0 0 10.4 20C11.067 20.217 11.933 20.217 12.6 20A1.65 1.65 0 0 0 15 19.4M15 4.6A1.65 1.65 0 0 0 13.6 4C12.933 3.783 12.067 3.783 11.4 4A1.65 1.65 0 0 0 9 4.6" stroke="#090226" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="lable">Settings</span>
+    </button>
+    <button class="feature-nav-btn selected" data-feature="intro"><span class="feature-icon"><i class='bx bxs-bulb'></i></span><span class="feature-label">Home</span></button>
+    <button class="feature-nav-btn" data-feature="ai"><span class="feature-icon"><i class='bx bx-bot'></i></span><span class="feature-label">AI</span></button>
+    <button class="feature-nav-btn" data-feature="complaint"><span class="feature-icon"><i class='bx bxs-file'></i></span><span class="feature-label">Complaint</span></button>
+    <button class="feature-nav-btn" data-feature="experts"><span class="feature-icon"><i class='bx bxs-group'></i></span><span class="feature-label">Experts</span></button>
+    <button class="feature-nav-btn" data-feature="awareness"><span class="feature-icon"><i class='bx bxs-book-content'></i></span><span class="feature-label">Awareness</span></button>
+</nav>
+
+<button class="sos-float-btn" title="Emergency SOS" id="sosEmergencyBtn">
+    <i class='bx bxs-alarm-exclamation'></i>
+    <span>SOS</span>
+</button>
+
+<div class="settings-dropdown" id="settingsDropdown">
+    <div class="dropdown-item" data-settings-panel-id="accountSettingsPanel">Account</div>
+    <div class="dropdown-item" data-settings-panel-id="notificationSettingsPanel">Notifications</div>
+    <div class="dropdown-item" data-settings-panel-id="sosSettingsPanel">SOS Settings</div>
+    <div class="dropdown-item" data-settings-action="logout">Logout</div>
+</div>
+
+<main id="featureMain">
+    <!-- Content for features (including the new rotating cards for 'intro') will be injected here by home.js -->
+    <!-- Settings panels are still defined below but hidden by default -->
+</main>
+
+<!-- Settings Panels (kept separate, toggled by JS) -->
+<section id="accountSettingsPanel" class="settings-panel hidden">
+    <h2>Account Settings</h2>
+    <form id="accountForm">
+        <div class="form-group">
+            <label for="accountName">Name:</label>
+            <input type="text" id="accountName" name="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="accountPhone">Phone Number:</label>
+            <input type="tel" id="accountPhone" name="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+            <label for="accountProfilePic">Profile Picture:</label>
+            <div class="profile-pic-area">
+                <img id="profilePicPreview" src="Assets/default-profile.png" alt="Profile Preview">
+                <div class="file-upload-box">
+                    <button type="button" class="plusButton" id="trigger_accountProfilePicUpload">+</button>
+                    <input type="file" id="accountProfilePicUpload" name="profilePic" accept="image/*" style="display: none;">
+                    <span class="file-upload-list" id="list_accountProfilePicUpload"></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn">Save Account Changes</button>
+    </form>
+</section>
+
+<section id="notificationSettingsPanel" class="settings-panel hidden">
+    <h2>Notification Settings</h2>
+    <form id="notificationForm">
+        <div class="form-group toggle-group">
+            <label for="enableNotifications">Enable Notifications:</label>
+            <label class="switch">
+                <input type="checkbox" id="enableNotifications" name="enableNotifications" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <button type="submit" class="btn">Save Notification Settings</button>
+    </form>
+</section>
+
+<section id="sosSettingsPanel" class="settings-panel hidden">
+    <h2>SOS Settings</h2>
+    <form id="sosForm">
+        <div class="form-group toggle-group">
+            <label for="enableSOS">Enable SOS:</label>
+            <label class="switch">
+                <input type="checkbox" id="enableSOS" name="enableSOS" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="form-group" id="sosTapsGroup">
+            <label for="sosTaps">Number of Taps to Trigger SOS:</label>
+            <input type="number" id="sosTaps" name="sosTaps" min="3" max="10" value="5">
+        </div>
+        <button type="submit" class="btn">Save SOS Settings</button>
+    </form>
+</section>
+
+<script src="home.js"></script>
+
+</body>
+</html>

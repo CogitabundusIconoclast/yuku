@@ -1,0 +1,1693 @@
+/* GLOBAL STYLES */
+body {
+    margin: 0;
+    font-family: 'Montserrat', 'Noto Sans Devanagari', Arial, sans-serif;
+    background: #fff;
+    min-height: 100vh;
+    color: #121349;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll often caused by animations/transforms */
+}
+
+body::before { /* Welcome page background dimmer */
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: url('Assets/WLC BG Pic 1.jpg') center center/cover no-repeat;
+    opacity: 0.23; /* Original opacity for welcome page */
+}
+
+main { /* General main container adjustments FOR WELCOME PAGE */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligns children (logo, card) to the right on welcome */
+    justify-content: flex-start;
+    min-height: 80vh;
+    position: relative;
+    width: 100%; /* Ensure main takes full width if needed */
+}
+/* Note: #featureMain on home.html will have its own specific 'main' styling */
+
+
+h1 {
+    color: #121349;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+/* -------------- WELCOME PAGE SPECIFIC STYLES -------------- */
+.logo-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+    margin-right: 145px;
+    margin-bottom: -20px;
+    margin-left: 24px;
+    z-index: 2;
+    transition: transform 1.1s cubic-bezier(.4,2,.6,1);
+}
+.logo-center img {
+    width: 470px;
+    height: 450px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 16px #001c3a55);
+    cursor: default;
+}
+
+.custom-welcome-card {
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 8px 32px 0 rgba(10,35,66,0.10);
+    padding: 56px 44px 44px 44px;
+    text-align: center;
+    border: 2px solid #efd406;
+    max-width: 420px;
+    width: 100%;
+    margin-top: -10px;
+    margin-right: 120px;
+    margin-bottom: 24px;
+    margin-left: 24px;
+    align-self: flex-end;
+    z-index: 2;
+    transition: all 1.1s cubic-bezier(.4,2,.6,1);
+}
+
+.choose-language {
+    font-size: 1.15rem;
+    color: #121349;
+    margin-bottom: 36px;
+    letter-spacing: 1px;
+}
+
+.language-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Base Button Styles (Concept) */
+.btn-base {
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+    box-shadow: 0 2px 8px rgba(239, 212, 6, 0.08), 0 1.5px 4px rgba(18, 19, 73, 0.08);
+    cursor: pointer;
+    border: 2px solid transparent;
+    text-align: center;
+    font-weight: 700;
+}
+.btn-base::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(239, 212, 6, 0.18);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: 0;
+}
+.btn-base > * {
+    position: relative;
+    z-index: 1;
+}
+.btn-base:hover::after {
+    width: 250%;
+    height: 800%;
+}
+.btn-base:hover {
+    color: #121349 !important;
+    background: #efd406 !important;
+    border-color: #efd406 !important;
+    box-shadow: 0 4px 16px rgba(239, 212, 6, 0.18), 0 2px 8px rgba(18, 19, 73, 0.10);
+}
+
+.language-options button {
+    background-color: #121349;
+    border: 1px solid #efd406;
+    padding: 5px;
+    position: relative;
+    width: 8.5em;
+    height: 2.6em;
+    transition: 0.5s;
+    font-size: 20px;
+    border-radius: 0.4em;
+    cursor: pointer;
+    font-family: 'Montserrat', 'Noto Sans Devanagari', Arial, sans-serif;
+    color: #e7e7e7;
+    font-weight: 600;
+    overflow: hidden;
+}
+.language-options button p {
+    position: absolute;
+    top: 0.6em;
+    left: 1.2em;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+}
+.language-options button svg {
+    position: absolute;
+    top: 0.7em;
+    right: 0.7em;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: 0.5s;
+    height: 1.2em;
+    fill: #fff;
+}
+.language-options button:hover {
+    background-color: #bfa100;
+    border-color: #bfa100;
+    color: #fff;
+}
+.language-options button:hover p {
+    left: 0.6em;
+}
+.language-options button:hover svg {
+    opacity: 1;
+}
+
+.auth-btns { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+.auth-btns button, .btn { /* .btn is also used in home.html settings panels */
+    padding: 14px 0;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    border: 2px solid #efd406;
+    background: #fffbe6;
+    color: #121349;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+    box-shadow: 0 2px 8px rgba(239, 212, 6, 0.08), 0 1.5px 4px rgba(18, 19, 73, 0.08);
+}
+.auth-btns button::after, .btn::after {
+    content: ''; position: absolute; left: 50%; top: 50%; width: 0; height: 0;
+    background: rgba(239, 212, 6, 0.18); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: 0;
+}
+.auth-btns button > *, .btn > * { position: relative; z-index: 1; }
+.auth-btns button:hover::after, .btn:hover::after { width: 250%; height: 800%; }
+
+.auth-btns button:hover, .btn:hover {
+    background: #efd406;
+    color: #121349;
+    border-color: #efd406;
+    box-shadow: 0 4px 16px rgba(239, 212, 6, 0.18), 0 2px 8px rgba(18, 19, 73, 0.10);
+}
+/* Specific overrides for .btn if it's a general submit button vs auth selection */
+.login-form .btn, .register-form .btn, .settings-panel .btn, #consultationRequestForm .btn, .submit-complaint-btn /* More specific */ {
+    width: 100%;
+    height: 45px;
+    background: #0b0d38;
+    color: #fff;
+    border: none; /* Override auth button border */
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.login-form .btn:hover, .register-form .btn:hover, .settings-panel .btn:hover, #consultationRequestForm .btn:hover, .submit-complaint-btn:hover {
+    background: #adaa03; /* Darker gold */
+    color: #fff;
+    border: none;
+}
+
+
+.switch-link {
+    margin-top: 18px;
+    color: #bfa100;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+.switch-link::after {
+    content: ''; position: absolute; left: 50%; top: 50%; width: 0; height: 0;
+    background: rgba(18, 19, 73, 0.08); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: 0;
+}
+.switch-link:hover::after { width: 150%; height: 400%; }
+.switch-link:hover {
+    text-decoration: underline;
+    color: #121349;
+}
+
+.back-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #bfa100;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    overflow: hidden;
+    transition: color 0.3s;
+}
+.back-btn::after {
+    content: ''; position: absolute; left: 50%; top: 50%; width: 0; height: 0;
+    background: rgba(18, 19, 73, 0.08); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: -1;
+}
+.back-btn:hover::after { width: 200%; height: 200%; }
+.back-btn:hover {
+    color: #121349;
+}
+
+.center-animate-card {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-90%, -50%) !important;
+    margin: 0 !important;
+    z-index: 10;
+}
+.logo-animate-down {
+    transform: translateY(120px);
+}
+
+.fade-in {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.7s cubic-bezier(.4,2,.6,1);
+}
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s cubic-bezier(.4,2,.6,1);
+}
+
+.login-form, .register-form { width: 100%; max-width: 340px; margin: 0 auto; }
+.register-form { padding-right: 10px; }
+
+.scrollable-form { max-height: 350px; overflow-y: auto; padding-right: 15px; }
+.scrollable-form::-webkit-scrollbar { width: 8px; }
+.scrollable-form::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.scrollable-form::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+.scrollable-form::-webkit-scrollbar-thumb:hover { background: #bfa100; }
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.register-form .input-box {
+    margin-bottom: 24px;
+}
+
+.input-box input[type="text"],
+.input-box input[type="email"],
+.input-box input[type="tel"],
+.input-box input[type="password"],
+.input-box textarea {
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid #ddd;
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    padding: 12px 20px;
+    padding-right: 45px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+.input-box input:focus, .input-box textarea:focus {
+    border-color: #7579e7;
+}
+.input-box input::placeholder, .input-box textarea::placeholder {
+    color: #aaa;
+}
+.input-box i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #777;
+}
+
+.form { /* For welcome page login form inputs */
+    position: relative;
+    margin-bottom: 20px;
+    --border-after-color: #7579e7;
+    --input-hovered-color: #f0f0f01f;
+}
+.form .input { /* For welcome page login form inputs */
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #ddd;
+    border-radius: 0;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    padding: 10px 5px;
+    transition: border-color 0.3s ease;
+}
+.form .input:focus {
+    border-color: var(--border-after-color);
+}
+.form .input::placeholder {
+    color: #aaa;
+}
+.form .input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--border-after-color);
+    transform: scaleX(0);
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+.form .input:focus + .input-border {
+    width: 100%;
+    transform: scaleX(1);
+}
+
+.info-icon {
+    display: inline-block;
+    margin-left: 8px;
+    color: #bfa100;
+    font-size: 1.1em;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+.info-icon:focus { outline: none; }
+.info-icon:hover { color: #121349; }
+
+.info-tooltip {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 5px);
+    background: #fffbe6;
+    color: #121349;
+    border: 1.5px solid #efd406;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 0.95em;
+    min-width: 220px;
+    max-width: 300px;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(18, 19, 73, 0.08);
+    text-align: left;
+    white-space: pre-line;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.info-icon.active + .info-tooltip {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+.input-box label {
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.file-upload-box {
+    margin-top: 8px;
+    margin-bottom: 18px;
+    text-align: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plusButton {
+    --plus_sideLength: 2.5rem;
+    --plus_topRightTriangleSideLength: 0.9rem;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: var(--plus_sideLength);
+    height: var(--plus_sideLength);
+    background-color: #ffffff;
+    color: #060625;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    vertical-align: middle;
+}
+.plusButton::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+    border-style: solid;
+    border-color: transparent #060625 transparent transparent;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+.plusButton:hover {
+    border-color: #252306;
+    background-color: #ffffff;
+}
+.plusButton:hover::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+.plusButton:focus-visible::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+.plusButton > .plusIcon {
+    fill: #060625;
+    width: calc(var(--plus_sideLength) * 0.6);
+    height: calc(var(--plus_sideLength) * 0.6);
+    z-index: 1;
+    transition: fill 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.plusButton:hover > .plusIcon {
+    fill: #e6d709;
+    transform: rotate(90deg);
+}
+.plusButton:focus-visible > .plusIcon {
+    fill: #7579e7;
+    transform: rotate(90deg);
+}
+.file-upload-list {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+    padding-left: 5px;
+}
+
+.animated-btn {
+    transition: transform 0.3s ease;
+}
+.animated-btn:hover {
+    transform: scale(1.02);
+}
+
+.contact-btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+}
+
+
+/* -------------- HOME PAGE SPECIFIC STYLES -------------- */
+.app-header {
+    position:fixed;
+    top:-9px;
+    left:195px;
+    z-index:30;
+}
+.app-header .app-logo {
+    height:250px;
+    filter:drop-shadow(0 2px 8px #efd40633);
+}
+
+.feature-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 0.7s cubic-bezier(.4,2,.6,1), background-image 0.7s ease-in-out;
+}
+.feature-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.52);
+    z-index: 1;
+    pointer-events: none;
+    transition: background 0.7s ease-in-out;
+}
+
+.feature-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    background: rgba(18,19,73,0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90px;
+    z-index: 10;
+    box-shadow: 2px 0 16px rgba(18,19,73,0.08);
+}
+.feature-nav .button { /* Settings button in nav */
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Styles for this button defined below */
+}
+
+.feature-nav-btn {
+    width: 120px;
+    height: 80px;
+    margin-bottom: 32px;
+    background: none;
+    border: none;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #efd406;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 2px 8px rgba(18,19,73,0.08);
+    position: relative;
+    overflow: hidden;
+}
+.feature-nav-btn.selected, .feature-nav-btn:hover {
+    background: #ffffff;
+    color: #121349;
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(239,212,6,0.18), 0 2px 8px rgba(18,19,73,0.10);
+}
+.feature-nav-btn .feature-icon {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+.feature-nav-btn .feature-label {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #efd406;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    display: block;
+    transition: color 0.3s;
+}
+.feature-nav-btn.selected .feature-label,
+.feature-nav-btn:hover .feature-label,
+.feature-nav-btn.selected .feature-icon i,
+.feature-nav-btn:hover .feature-icon i {
+    color: #121349;
+}
+
+.feature-nav-btn[data-feature="experts"]:hover {
+    background: linear-gradient(135deg, #ffffff, #ffffff);
+    color: #fff;
+    
+}
+
+.feature-nav-btn[data-feature="awareness"]:hover {
+    background: linear-gradient(135deg, #ffffff, #ffffff);
+    color: #fff;
+   
+}
+
+/* Main Content Area FOR HOME PAGE FEATURES */
+#featureMain {
+    padding-left: 220px; /* Default from your CSS */
+    padding-top: 0; /* Let the cards container manage its own top spacing if needed */
+    padding-right: 0;
+    padding-bottom: 0;
+    width: calc(100% - 220px); /* Default */
+    box-sizing: border-box;
+    position: relative;
+    z-index: 5;
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex; /* Added to help center cards container */
+    align-items: center; /* Vertically center content in featureMain */
+    justify-content: center; /* Horizontally center content in featureMain */
+}
+
+
+/* Feature Content Card (used by JS-injected content for AI, Complaint, Experts, Awareness etc.) */
+.feature-content {
+    position: relative;
+    max-width: 700px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 28px;
+    box-shadow: 0 8px 32px 0 rgba(10,35,66,0.10);
+    padding: 38px 34px 34px 34px;
+    min-height: 420px;
+    transition: box-shadow 0.3s, background 0.3s;
+    overflow: hidden;
+    animation: fadeInFeature 0.7s cubic-bezier(.4,2,.6,1);
+    margin: 0 auto; /* Added to center feature content cards if #featureMain is flex */
+}
+@keyframes fadeInFeature {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.feature-content h2 { margin-top: 0; }
+.feature-content textarea { width: 100%; min-height: 80px; margin-bottom: 18px; padding:10px; box-sizing: border-box; border-radius: 8px; border: 1px solid #ccc;}
+.feature-content .uploadButton {
+    padding: 10px 15px;
+    background-color: #121349;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.feature-content .uploadButton i { font-size: 1.2em; }
+.feature-content .uploadButton:hover { background-color: #23306e; }
+
+
+/* --- START: NEW INTERACTIVE ROTATING CARDS UI STYLES FOR HOME PAGE INTRO --- */
+#interactiveCardsContainer {
+  width: 100%;
+  height: calc(100vh - 40px); /* Increased height by reducing subtraction */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Important for perspective */
+  position: relative; /* If #featureMain has padding, this helps center */
+  margin-top: -20px; /* Adjust as needed to visually center due to perspective */
+  margin-left: 230px; /* Added to shift cards right */
+  padding: 60px 0; /* Added padding to give more space for zoomed cards */
+}
+
+.interactive-cards-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@property --current-rotate-y {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.interactive-cards-inner {
+  --w: 220px;
+  --h: 330px;
+  --rotateX: -12deg;
+  --perspective: 1200px;
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform: perspective(var(--perspective))
+             rotateX(var(--rotateX))
+             rotateY(var(--current-rotate-y));
+  animation: rotatingCardsAnimation 25s linear infinite;
+  --snap-transition-duration: 0.25s;
+  transition-property: --current-rotate-y;
+  transition-duration: var(--snap-transition-duration);
+  transition-timing-function: ease-out;
+  cursor: grab;
+}
+
+.interactive-cards-inner:active {
+    cursor: grabbing;
+}
+
+@keyframes rotatingCardsAnimation {
+  from { --current-rotate-y: 0deg; }
+  to { --current-rotate-y: 360deg; }
+}
+
+.interactive-card {
+  position: absolute;
+  border-radius: 18px;
+  overflow: hidden;
+  inset: 0;
+  transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+             translateZ(var(--translateZ));
+  transition: transform 0.3s ease-out, z-index 0.3s step-end, box-shadow 0.3s ease-out;
+  will-change: transform;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.interactive-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0000
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(var(--color-card), 0.3) 0%,
+      rgba(var(--color-card), 0.6) 70%,
+      rgba(var(--color-card), 0.9) 100%
+    );
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.interactive-card.zoomed {
+  transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+             translateZ(var(--translateZ))
+             scale(1.25);
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(var(--color-card),0.3);
+}
+
+.interactive-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  text-align: left;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.3) transparent;
+}
+.interactive-card-content::-webkit-scrollbar {
+  width: 5px;
+}
+.interactive-card-content::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 3px;
+}
+
+.interactive-card-question {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1f1d1d;
+  line-height: 1.3;
+}
+
+.interactive-card-answer {
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #040404;
+}
+/* --- END: NEW INTERACTIVE ROTATING CARDS UI STYLES --- */
+
+
+/* Settings Button (Home Page Nav) */
+.button { /* This is the #settingsBtn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    height: 36px;
+    width: 120px;
+    border: none;
+    background: #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(18,19,73,0.1);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.button .lable {
+    line-height: 20px;
+    font-size: 15px;
+    color: #090226;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.button:hover {
+    background: #ffffff;
+    box-shadow: 0 3px 12px rgba(18,19,73,0.15);
+}
+.button .svg-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+}
+.button .svg-icon svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    transform-origin: 50% 50%;
+    stroke: #090226;
+}
+.button:hover .svg-icon svg {
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.settings-dropdown {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background: #fff;
+    border: 2px solid #efd406;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(10,35,66,0.10);
+    z-index: 40;
+    min-width: 240px;
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.settings-dropdown.open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+.settings-dropdown .dropdown-item {
+    padding: 14px 24px;
+    font-size: 1.05em;
+    color: #121349;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+}
+.settings-dropdown .dropdown-item:hover {
+    background: #fffbe6;
+    color: #bfa100;
+}
+
+.sos-float-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 100;
+    background: #efd406;
+    color: #121349;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px rgba(18,19,73,0.18);
+    padding: 16px 32px 16px 24px;
+    font-size: 1.3em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.sos-float-btn i {
+    font-size: 1.5em;
+}
+.sos-float-btn:hover {
+    background: #fffbe6;
+    color: #121349;
+    box-shadow: 0 6px 24px rgba(239,212,6,0.22);
+    transform: scale(1.07);
+}
+.sos-float-btn:hover i {
+    color: #bfa100;
+}
+
+/* Settings Panels (Displayed OUTSIDE #featureMain, toggled by JS) */
+.settings-panel { /* This rule is an UPDATE to your existing .settings-panel */
+    background: rgba(255,255,255,0.97);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px 0 rgba(10,35,66,0.1);
+    padding: 30px 35px;
+    margin: 20px auto; /* Add some top/bottom margin and center */
+    max-width: 700px;
+    width: calc(100% - 280px); /* Considering nav width + some breathing room */
+    position: relative;
+    z-index: 15;
+    animation: fadeInFeature 0.5s ease-out;
+    /* display: none; by default with .hidden class, JS handles .active */
+}
+.settings-panel.hidden {
+    display: none !important;
+}
+.settings-panel.active {
+    display: block;
+}
+
+/* These rules are for elements *inside* settings panels */
+.settings-panel h2 { /* Note: your previous .settings-panel h2 had margin-bottom: 20px */
+    font-size: 1.8em;
+    color: #121349;
+    margin-top: 0;
+    margin-bottom: 25px; /* Increased slightly */
+    border-bottom: 2px solid #efd406;
+    padding-bottom: 10px;
+}
+/* Styles from .feature-content-panel are now applied to .settings-panel */
+.settings-panel .form-group {
+    margin-bottom: 20px;
+}
+.settings-panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+.settings-panel input[type="text"],
+.settings-panel input[type="tel"], /* Added for account phone */
+.settings-panel input[type="date"],
+.settings-panel input[type="number"],
+.settings-panel textarea,
+.settings-panel select {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.settings-panel input[type="checkbox"] { /* Specific for checkbox */
+    width: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.settings-panel .profile-pic-area { /* From your original settings-panel */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+.settings-panel .profile-pic-area img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #efd406;
+}
+/* .settings-panel .file-upload-box is already styled globally */
+
+.settings-panel .switch { /* From your original settings-panel */
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    vertical-align: middle; /* Align with label */
+}
+.settings-panel .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.settings-panel .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+.settings-panel .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+.settings-panel input:checked + .slider {
+    background-color: #4caf50;
+}
+.settings-panel input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.settings-panel .toggle-group { /* To align label and switch */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Puts label on left, switch on right */
+}
+.settings-panel .toggle-group label:first-child {
+    margin-bottom: 0; /* Remove bottom margin if it's the text label */
+}
+
+.hidden { display: none !important; } /* General utility class */
+
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    #featureMain { /* UPDATED */
+        padding-left: 60px;
+        width: calc(100% - 60px);
+        /* padding-top: 120px; REMOVED - #featureMain is now flex centered */
+    }
+    .app-header { left: 80px; }
+
+    .feature-content { /* For AI, Complaint etc. */
+        max-width: calc(100% - 20px); /* Adjusted for padding within #featureMain */
+        padding: 25px;
+        margin: 20px auto; /* Ensure it's centered if #featureMain has extra space */
+    }
+    .settings-panel { /* Make settings panels take more width on smaller screens */
+         width: calc(100% - 100px); /* Relative to viewport, minus nav and some space */
+         padding: 25px;
+    }
+
+    .interactive-cards-inner { /* For rotating cards */
+        --w: 180px;
+        --h: 270px;
+        --perspective: 1000px;
+    }
+    .interactive-card-question {
+        font-size: 1.1em;
+    }
+    .interactive-card-answer {
+        font-size: 0.85em;
+    }
+
+
+    .feature-nav {
+        width: 60px;
+        padding-top: 20px;
+    }
+    .feature-nav .button {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        top: 15px;
+    }
+    .feature-nav .button .lable { display: none; }
+    .feature-nav .button .svg-icon, .feature-nav .button .svg-icon svg {
+        width: 20px; height: 20px;
+    }
+    .settings-dropdown {
+        left: 10px; top: 65px;
+        min-width: 200px;
+    }
+
+    .feature-nav-btn {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 20px;
+    }
+    .feature-nav-btn .feature-icon { font-size: 1.5em; margin-bottom: 4px;}
+    .feature-nav-btn .feature-label {
+        font-size: 0.6em;
+        max-width: 100%;
+    }
+    .sos-float-btn {
+        bottom: 16px; right: 16px; padding: 10px 18px 10px 14px; font-size: 1em;
+    }
+}
+
+@media (max-width: 600px) {
+    body { font-size: 14px; }
+    .logo-center { margin-right: 20px; margin-left: 20px; }
+    .logo-center img { width: 80%; max-width: 300px; height: auto; }
+    .custom-welcome-card {
+        margin-right: 20px; margin-left: 20px; padding: 30px 20px;
+        max-width: calc(100% - 40px);
+    }
+    .language-options { gap: 10px; flex-direction: column; align-items: center;}
+    .language-options button { width: 100%; max-width: 200px; }
+
+    #featureMain { /* UPDATED */
+        padding-left: 40px;
+        width: calc(100% - 40px);
+        /* padding-top: 80px; REMOVED */
+    }
+     .settings-panel { /* Settings panels on mobile */
+         width: calc(100% - 60px); /* Almost full width minus nav */
+         padding: 20px 15px;
+         margin: 10px auto;
+    }
+    .settings-panel h2 {
+        font-size: 1.5em;
+    }
+
+
+    .interactive-cards-inner { /* For rotating cards */
+        --w: 150px;
+        --h: 240px;
+        --perspective: 800px;
+        --rotateX: -8deg;
+    }
+     #interactiveCardsContainer {
+        height: calc(100vh - 60px);
+        margin-top: -40px;
+        margin-left: 50px; /* Reduced margin for smaller screens */
+    }
+    .interactive-card-question {
+        font-size: 1em;
+        margin-bottom: 8px;
+    }
+    .interactive-card-answer {
+        font-size: 0.8em;
+        line-height: 1.4;
+    }
+    .interactive-card-img {
+        padding: 15px;
+    }
+
+    .app-header { left: 10px; top: 5px; }
+    .app-header .app-logo { height: 120px; }
+
+    .feature-content { /* For AI, Complaint etc. */
+        padding: 20px 15px;
+        min-height: auto;
+        max-width: calc(100% - 10px); /* Adjusted for padding within #featureMain */
+    }
+    .feature-nav {
+        width: 40px;
+        padding-top: 15px;
+    }
+    .feature-nav .button {
+        width: 30px; height: 30px;
+        top: 10px;
+    }
+    .feature-nav .button .svg-icon, .feature-nav .button .svg-icon svg {
+        width: 16px; height: 16px;
+    }
+    .settings-dropdown { left: 5px; top: 50px; min-width: 180px; }
+
+    .feature-nav-btn {
+        width: 32px; height: 32px; margin-bottom: 15px;
+    }
+    .feature-nav-btn .feature-icon { font-size: 1.2em; margin-bottom: 2px;}
+    .feature-nav-btn .feature-label { display: none; }
+
+    /* Removed .intro-title and .intro-desc as they are for old content */
+
+    .sos-float-btn {
+        bottom: 10px; right: 10px; padding: 8px 12px; font-size: 0.9em;
+    }
+    .sos-float-btn span { display: none; }
+    .sos-float-btn i { margin-right: 0; }
+}
+
+/* Enhanced Complaint Page Styles (These are specific to .feature-content.complaint-page-enhanced) */
+.feature-content.complaint-page.complaint-page-enhanced {
+    background: rgba(255, 255, 255, 0.968);
+    color: #100236;
+    border: 1px solid #04012b;
+    border-radius: 20px;
+    padding: 45px 55px;
+    max-width: 1000px; /* This will be constrained by .feature-content max-width and #featureMain */
+    /* margin: 30px 50px 30px 280px;  This margin might be problematic with flex centering, rely on .feature-content margin: auto */
+    box-shadow: 0 10px 40px rgba(239, 212, 6, 0.15), 0 0 70px rgba(8, 11, 194, 0.116);
+}
+
+.complaint-form-styled {
+    width: 100%;
+}
+
+.complaint-form-styled .form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+@media (max-width: 768px) { /* Make complaint form single column on smaller screens */
+    .complaint-form-styled .form-section {
+        grid-template-columns: 1fr;
+        gap: 0; /* Remove gap if single column */
+    }
+}
+
+
+.complaint-form-styled .form-group {
+    margin-bottom: 25px;
+}
+
+.complaint-form-styled label {
+    display: block;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #121349;
+}
+
+.complaint-form-styled .input, /* Used for name/email in complaint form */
+.complaint-form-styled textarea,
+.complaint-form-styled .styled-select {
+    width: 100%;
+    padding: 15px;
+    border: 1.5px solid #bfa100;
+    border-radius: 10px;
+    font-size: 1.05em;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #121349;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Ensure padding doesn't increase width */
+}
+
+.complaint-form-styled textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.complaint-form-styled .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0;
+}
+.complaint-form-styled .checkbox-label {
+    font-size: 1.05em;
+    margin: 0;
+}
+
+.complaint-form-styled .submit-complaint-btn { /* Already covered by .btn specific rules */
+    /* width: 100%; */
+    /* padding: 15px; */
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/* Styles for .file-upload-box and .plusButton are already global */
+/* .complaint-form-styled .file-upload-box { ... } */
+.complaint-form-styled .file-upload-list {
+    color: #666;
+    font-size: 0.95em;
+}
+/* .complaint-form-styled .plusButton { ... } */
+
+
+.voice-complaint-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #fffbe6;
+    color: #121349;
+    border: 2px solid #efd406;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(239, 212, 6, 0.08), 0 1.5px 4px rgba(18, 19, 73, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+.voice-complaint-btn::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(239, 212, 6, 0.18);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: 0;
+}
+.voice-complaint-btn i, .voice-complaint-btn span {
+    position: relative;
+    z-index: 1;
+}
+.voice-complaint-btn i { font-size: 1.2em; }
+.voice-complaint-btn:hover {
+    background: #efd406;
+    color: #121349;
+    border-color: #efd406;
+    box-shadow: 0 4px 16px rgba(239, 212, 6, 0.18), 0 2px 8px rgba(18, 19, 73, 0.10);
+}
+.voice-complaint-btn:hover::after {
+    width: 250%;
+    height: 800%;
+}
+
+.voice-complaint-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-align: center;
+    border: 2px solid #efd406;
+}
+.voice-complaint-dialog.show {
+    opacity: 1;
+    visibility: visible;
+}
+.voice-complaint-dialog h3 {
+    color: #121349;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+.voice-complaint-dialog p {
+    color: #666;
+    margin: 0;
+}
+
+/* Complaint Tracker specific styles */
+.complaint-tracker-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #efd406;
+}
+.complaint-tracker-section h3 {
+    margin-bottom: 20px;
+    color: #121349;
+}
+.complaint-tracker-section .form-group { /* Reuse form-group from complaint form */
+    max-width: 400px; /* Limit width of ID input */
+    margin-left: auto;
+    margin-right: auto;
+}
+.complaint-tracker-section .btn-navy { /* For Track Status button */
+    background-color: #0b0d38;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    max-width: 200px;
+    margin: 10px auto 20px auto; /* Center button */
+    display: block; /* To allow margin auto centering */
+}
+.complaint-tracker-section .btn-navy:hover {
+    background-color: #121349;
+}
+
+.horizontal-progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 25px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.progress-bar-fill {
+    height: 100%;
+    background-color: #bfa100; /* Default/initial color */
+    width: 0%; /* Initial width */
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    font-weight: bold;
+}
+.progress-bar-fill.progress-bar-loading {
+    background: linear-gradient(90deg, #bfa100, #efd406, #bfa100);
+    background-size: 200% 100%;
+    animation: loadingAnimation 1.5s infinite linear;
+}
+@keyframes loadingAnimation {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    color: #121349;
+    font-weight: bold;
+    font-size: 0.9em;
+    z-index: 1; /* Above the fill */
+}
+
+.complaint-status-display-area .status-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-left: 5px solid #bfa100; /* Accent color */
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.status-card .status-title {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 8px;
+}
+.status-card .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: white;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+.status-card .status-update, .status-card .status-note {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+}
+.status-card .status-note {
+    font-style: italic;
+}
+
+.expanding-stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-left: 200px;
+}
+
+.expanding-card {
+    width: 700px;
+    height: 700px;
+    border-radius: 4px;
+    background: #15055e86;
+    display: flex;
+    gap: 5px;
+    padding: .4em;
+    margin: 0 auto;
+}
+
+.expanding-card .stat-panel {
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .5s;
+    background: #ffffff00;
+    border: 1px solid #050225;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    font-weight: 800;
+}
+
+.expanding-card .stat-panel:hover {
+    flex: 10;
+}
+
+.expanding-card .stat-panel span {
+    position: absolute;
+    width: 14em;
+    padding: .5em;
+    text-align: center;
+    color: #ebc624;
+    letter-spacing: .1em;
+    transition: all .5s;
+    font-weight: 800;
+}
+
+.expanding-card .stat-panel .collapsed-text {
+    transform: rotate(90deg);
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.expanding-card .stat-panel .expanded-text {
+    opacity: 0;
+    transform: scale(0.8);
+    font-size: 1.5em;
+    line-height: 1.4;
+}
+
+.expanding-card .stat-panel:hover .collapsed-text {
+    opacity: 0;
+    transform: rotate(0) scale(0.8);
+}
+
+.expanding-card .stat-panel:hover .expanded-text {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Awareness Page Flip Cards */
+.awareness-feature {
+    padding: 30px;
+}
+
+.awareness-feature h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.awareness-feature > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    color: #333;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 190px;
+    height: 254px;
+    perspective: 1000px;
+    font-family: sans-serif;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+
+.flip-card-front, .flip-card-back {
+    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 3px solid rgb(234, 213, 26);
+    border-radius: 1rem;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.flip-card-front {
+    background: linear-gradient(120deg, rgb(10, 4, 58) 60%, rgb(71, 73, 205) 88%, rgb(255, 211, 195) 40%, rgb(60, 83, 176) 48%);
+    color: rgba(251, 255, 0, 0.975);
+}
+
+.flip-card-back {
+    background: linear-gradient(120deg, rgb(243, 240, 63) 30%, rgb(147, 142, 75) 88%, rgb(239, 239, 239) 40%, rgb(144, 142, 56) 78%);
+    color: rgb(4, 8, 32);
+    transform: rotateY(180deg);
+}
+
+.flip-card .title {
+    font-size: 1.3em;
+    font-weight: 900;
+    text-align: center;
+    margin: 0 0 10px 0;
+    padding: 0 5px;
+}
+
+.flip-card-front p:not(.title),
+.flip-card-back p:not(.title):not(.info-point) {
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.flip-card-back .info-point {
+    font-size: 0.85em;
+    text-align: left;
+    margin: 3px 0;
+    padding-left: 10px;
+    width: 100%;
+    line-height: 1.3;
+}
+
+/* Responsive adjustments for flip cards */
+@media (max-width: 768px) {
+    .card-container {
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .flip-card {
+        width: 160px;
+        height: 220px;
+    }
+
+    .flip-card .title {
+        font-size: 1.1em;
+    }
+
+    .flip-card-back .info-point {
+        font-size: 0.75em;
+    }
+}
+
+.awareness-feature.feature-content {
+    background: transparent;
+    box-shadow: none;
+    margin-left: 245px;
+}
+
+.complaint-page.feature-content {
+    max-width: 1000px;
+    margin-left: 320px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.95);  /* Keeping the white background for form visibility */
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraksha App - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Inline styles moved to style.css -->
+</head>
+<body>
+    <main>
+        <div class="logo-center" id="logoCenter">
+            <img src="Assets/Suraksha Logo.png" alt="Suraksha Logo">
+        </div>
+        <div class="custom-welcome-card" id="welcomeCard">
+            <div id="welcomeContent">
+                <h1>Welcome!</h1>
+                <p class="choose-language">Choose your language / अपनी भाषा चुनें</p>
+                <div class="language-options">
+                    <button id="langEnglishBtn">
+                      <p>English</p>
+                      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8H12M12 8L8.5 4.5M12 8L8.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button id="langHindiBtn">
+                      <p>हिन्दी</p>
+                      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8H12M12 8L8.5 4.5M12 8L8.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="authContent" class="fade-out" style="display:none;">
+                <button class="back-btn" id="backToWelcomeBtn">←</button>
+                <h1>Login or Register</h1>
+                <div class="auth-btns">
+                    <button id="showLoginBtn">Login</button>
+                    <button id="showRoleSelectBtn">Register</button>
+                </div>
+            </div>
+
+            <div id="loginContent" class="fade-out" style="display:none;">
+                <button class="back-btn" id="loginBackToAuthBtn">←</button>
+                <form class="login-form fade-in" id="loginForm">
+                    <h1>Login</h1>
+                    <div class="form">
+                        <input class="input" placeholder="Email" required type="email" name="email">
+                        <span class="input-border"></span>
+                    </div>
+                    <div class="form">
+                        <input class="input" placeholder="Phone Number" required type="tel" name="phone">
+                        <span class="input-border"></span>
+                    </div>
+                    <div class="form">
+                        <input class="input" placeholder="Password" required type="password" name="password">
+                        <span class="input-border"></span>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <span class="switch-link" id="loginSwitchToRegisterBtn">Don't have an account? Register</span>
+            </div>
+
+            <div id="roleContent" class="fade-out" style="display:none;">
+                <button class="back-btn" id="roleBackToAuthBtn">←</button>
+                <h1>Select Registration Type</h1>
+                <div class="auth-btns">
+                    <button data-role="lawyer">Lawyer</button>
+                    <button data-role="hacker">Ethical Hacker / Forensic Expert</button>
+                    <button data-role="other">Other Individual Legal Services</button>
+                    <button data-role="firm">Firm</button>
+                </div>
+                <span class="switch-link" id="roleSwitchToLoginBtn">Already have an account? Login</span>
+            </div>
+
+            <div id="registerContent" class="fade-out" style="display:none;">
+                <button class="back-btn" id="registerBackToRoleBtn">←</button>
+                <h1 id="registerTitle">Register</h1>
+                <form class="register-form scrollable-form" id="registerForm">
+                    <!-- Dynamic fields will be inserted here by JS -->
+                    <div id="registerFormFields"></div>
+                    <button type="submit" class="btn animated-btn">Register</button>
+                </form>
+                <span class="switch-link" id="registerSwitchToLoginBtn">Already have an account? Login</span>
+            </div>
+        </div>
+    </main>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="welcome.js"></script>
+</body>
+</html>
